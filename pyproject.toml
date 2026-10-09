@@ -1,0 +1,30 @@
+[build-system]
+requires = ["setuptools>=64"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "lyrics2pdf"
+version = "1.0.0"
+description = "Turn plain-text lyrics into a clean one-page PDF lyric sheet with room for chords"
+readme = "README.md"
+license = "MIT"
+license-files = ["LICENSE"]
+authors = [{ name = "Pavoras" }]
+requires-python = ">=3.10"
+dependencies = ["reportlab>=4.0"]
+keywords = ["lyrics", "pdf", "songbook", "chords", "lyric sheet", "reportlab"]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Environment :: Console",
+    "Topic :: Multimedia :: Sound/Audio",
+    "Topic :: Printing",
+]
+
+[project.urls]
+Repository = "https://github.com/pavoras/lyrics2pdf"
+
+[project.scripts]
+lyrics2pdf = "lyrics2pdf:main"
+
+[tool.setuptools]
+py-modules = ["lyrics2pdf"]

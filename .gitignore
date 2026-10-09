@@ -1,6 +1,9 @@
 __pycache__/
 *.pyc
 .venv/
+build/
+dist/
+*.egg-info/
 # your own songs: keep them out of the public repo
 *.txt
 *.pdf

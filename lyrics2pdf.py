@@ -170,15 +170,27 @@ def build(src: Path, out: Path, title: str, artist: str, cols: int, lead: float 
           f"= {lead / FONT_SIZE:.1f}x font size, {pages} page(s))")
 
 
-if __name__ == "__main__":
-    p = argparse.ArgumentParser()
-    p.add_argument("src", type=Path)
-    p.add_argument("-t", "--title", default=None)
-    p.add_argument("-a", "--artist", default="")
-    p.add_argument("-o", "--out", type=Path, default=None)
-    p.add_argument("--cols", type=int, default=1, choices=[1, 2])
+def main():
+    p = argparse.ArgumentParser(
+        prog="lyrics2pdf",
+        description="Turn a plain-text lyric file into a styled one-page A4 PDF, "
+                    "with space above every line for chords.",
+        epilog="Stanzas are separated by blank lines; optional [Verse]/[Chorus]/... tags "
+               "go on their own line. Untagged stanzas that repeat become choruses.")
+    p.add_argument("src", type=Path, help="lyrics file (UTF-8 plain text)")
+    p.add_argument("-t", "--title", default=None,
+                   help="song title (default: derived from the file name)")
+    p.add_argument("-a", "--artist", default="", help="artist line under the title")
+    p.add_argument("-o", "--out", type=Path, default=None,
+                   help="output PDF (default: SRC with .pdf extension)")
+    p.add_argument("--cols", type=int, default=1, choices=[1, 2],
+                   help="number of columns (default: 1)")
     p.add_argument("--leading", type=float, default=None,
                    help="fixed line spacing in pt (default: auto-fit to one page)")
     a = p.parse_args()
     build(a.src, a.out or a.src.with_suffix(".pdf"),
           a.title or a.src.stem.replace("_", " ").title(), a.artist, a.cols, a.leading)
+
+
+if __name__ == "__main__":
+    main()
