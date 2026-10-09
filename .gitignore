@@ -1,0 +1,9 @@
+__pycache__/
+*.pyc
+.venv/
+# your own songs: keep them out of the public repo
+*.txt
+*.pdf
+!requirements.txt
+!examples/*.txt
+!examples/*.pdf
